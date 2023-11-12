@@ -1,0 +1,10 @@
+function solve(input) 
+{
+    let textR=input.split('')
+    let text =textR.reverse().join('');
+    let first = text.substring(0,text.length/2);
+    let sec = text.substring(text.length/2,text.length)
+    console.log(sec ) 
+    console.log( first) 
+    
+} 
