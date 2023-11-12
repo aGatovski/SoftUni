@@ -1,0 +1,11 @@
+function solve(word,input) 
+{
+    input=input.toLowerCase();
+  const text  = input.split(' ');
+  if(text.includes(word.toLowerCase()))
+  {
+   return word;
+  }
+  return `${word} not found!`
+
+}
