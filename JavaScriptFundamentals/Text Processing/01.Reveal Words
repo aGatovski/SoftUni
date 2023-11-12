@@ -1,0 +1,23 @@
+function solve(word, text) 
+{
+    let wordSub = word.split(', ');
+    let arrText=text.split(' ');
+    for(let words of arrText)
+    {
+        if(words.startsWith('*'))
+        {
+            for(let sub of wordSub)
+            {
+                if(words.length == sub.length) 
+                {
+                    let ind = arrText.indexOf(words);
+                    arrText[ind]=sub;
+                }
+            }
+        }
+    }
+    console.log(arrText.join(' '))
+
+
+
+}
