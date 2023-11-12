@@ -1,0 +1,9 @@
+function solve(input) 
+{
+   let allInfo = input.split('\\'); 
+  let file = allInfo[allInfo.length-1].split('.');
+   let extension = file.pop();
+   console.log("File name: " + file.join('.'))
+   console.log("File extension: " + extension)
+  
+}
