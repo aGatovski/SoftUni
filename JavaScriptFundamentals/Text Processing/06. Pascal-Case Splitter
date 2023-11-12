@@ -1,13 +1,21 @@
-function foo(str) {
-    str = str.split('');
-    let words = []
-    str.forEach(x => {
-        if (x.charCodeAt(0) >= 65 && x.charCodeAt(0) <= 90) {
-            words.push(x)
-        } else if (x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122) {
-            words[words.length - 1] += x
-        }
-    })
+function solve(input) {
+    let split = [];
+    let currentLine = '';
 
-    return words.join(', ')
+    for (let i = 0; i < input.length; i++) {
+        const currentChar = input[i];
+        if (currentChar === currentChar.toUpperCase()) {
+            if (currentLine.length > 0) {
+                split.push(currentLine);
+                currentLine = '';
+            }
+        }
+        currentLine += currentChar;
+    }
+
+    if (currentLine.length > 0) {
+        split.push(currentLine);
+    }
+
+    console.log(split.join(', '));
 }
