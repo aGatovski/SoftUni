@@ -1,0 +1,11 @@
+function solve(input) 
+{
+ let text = input.split('');
+
+ let line="";
+ for(let i=0; i<text.length;i++)
+ {
+    if(text[i]!=text[i+1])line+=text[i];
+ }
+ console.log(line)
+}
