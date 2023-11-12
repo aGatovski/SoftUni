@@ -1,0 +1,22 @@
+function solve(input) 
+{
+   let text = input.split(' ');
+    for(let word of text)
+    {
+        if(word.startsWith('#') && word.length>1)
+        {
+            if(containsNumber(word)) console.log(word.substring(1,word.length));
+        }
+    }
+    function containsNumber(text)
+
+
+    {
+        for(let el of text)
+        { 
+            if(!isNaN(el)) return false;
+        }
+        return true;
+    }
+}
+ 
