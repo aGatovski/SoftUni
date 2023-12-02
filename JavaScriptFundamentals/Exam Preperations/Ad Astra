@@ -1,0 +1,23 @@
+function adAstra(input){
+  let finalCalories=0;
+  let foods=[];
+  let text= input.shift();
+
+let patternForProducts =/(\#|\|)(?<product>[A-Za-z\s]+)\1(?<experationdate>\d{2}\/\d{2}\/\d{2})\1(?<calories>\d{1,5})\1/g;
+
+let match = text.matchAll(patternForProducts);
+for(let matches of match){
+  let {product,experationdate,calories} = matches.groups;
+  foods.push({product,experationdate,calories});
+  finalCalories+=Number(calories);
+}
+
+
+
+console.log("You have food to last you for: " +Number(Math.floor(finalCalories/2000)) + " days!")
+foods.forEach( el => console.log(`Item: ${el.product}, Best before: ${el.experationdate}, Nutrition: ${el.calories}`));
+
+    
+  
+  
+}
