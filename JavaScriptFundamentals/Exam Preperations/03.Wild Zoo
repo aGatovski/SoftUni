@@ -1,0 +1,53 @@
+function WildZoo(input){
+  let myZoo={};
+let line = input.shift().split(': ');
+while (line!="EndDay") {
+  let command= line.shift();
+
+  if(command=='Add'){
+    
+    let [name,food,place] = line.shift().split('-');
+    if(myZoo.hasOwnProperty(name)){
+      myZoo[name].food+=Number(food);
+      
+    }
+    else{
+      myZoo[name] ={food:Number(food),place};
+      }
+  }
+
+  else if(command=="Feed"){
+    let [names,foods] = line.shift().split('-');
+    if(myZoo.hasOwnProperty(names)){
+      myZoo[names].food-=Number(foods);
+      
+      if(myZoo[names].food<=0){
+        console.log(names + " was successfully fed")
+          delete myZoo[names];
+      }
+    }
+    
+  }
+
+  line = input.shift().split(': ');
+}
+let areas={};
+console.log("Animals:")
+let entries = Object.entries(myZoo);
+for(let [key,value] of entries){
+  if(!areas.hasOwnProperty(value.place)){
+    areas[value.place] = {count:1};
+  }
+  else areas[value.place].count += 1;
+  console.log( ` ${key} -> ${value.food}g`)
+}
+
+console.log("Areas with hungry animals:")
+let entries2 = Object.entries(areas)
+for(let [key,value] of entries2){
+  console.log(`${key}: ${value.count}`)
+}
+
+
+
+}
