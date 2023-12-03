@@ -1,0 +1,63 @@
+function Pianist(input)
+{
+  let album={};
+let n = Number(input.shift());
+for (let i = 0; i < n; i++) {
+  let [piece,composer,key] = input.shift().split('|');
+    album[piece]={composer,key};
+  
+}
+
+let line = input.shift();
+while (line!='Stop') {
+  let tokens= line.split('|');
+  let command=tokens.shift();
+  if(command=="Add"){
+    let pie=tokens.shift();
+    if(!album.hasOwnProperty(pie)){
+      album[pie]={composer:tokens[0],key:tokens[1]};
+      console.log(`${pie} by ${tokens[0]} in ${tokens[1]} added to the collection!`)
+    }
+    else console.log(`${pie} is already in the collection!`)
+  }
+
+  else if(command=='Remove'){
+    let pie=tokens.shift();
+    if(album.hasOwnProperty(pie)){
+      delete album[pie];
+      console.log(`Successfully removed ${pie}!`)
+    }
+    else console.log(`Invalid operation! ${pie} does not exist in the collection.`)
+  }
+
+  else if(command=='ChangeKey'){
+    let pie=tokens.shift();
+    if(album.hasOwnProperty(pie)){
+     album[pie].key = tokens[0];
+      console.log(`Changed the key of ${pie} to ${tokens[0]}!`)
+    }
+    else console.log(`Invalid operation! ${pie} does not exist in the collection.`)
+  }
+
+  line = input.shift();
+}
+let entries = Object.entries(album);
+for (let [key,value] of entries){
+  console.log(`${key} -> Composer: ${value.composer}, Key: ${value.key}`)
+}
+
+
+}
+Pianist([
+  '3',
+  'Fur Elise|Beethoven|A Minor',
+  'Moonlight Sonata|Beethoven|C# Minor',
+  'Clair de Lune|Debussy|C# Minor',
+  'Add|Sonata No.2|Chopin|B Minor',
+  'Add|Hungarian Rhapsody No.2|Liszt|C# Minor',
+  'Add|Fur Elise|Beethoven|C# Minor',
+  'Remove|Clair de Lune',
+  'ChangeKey|Moonlight Sonata|C# Major',
+  'Stop'  
+]
+)
