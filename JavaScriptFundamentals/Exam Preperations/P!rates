@@ -1,0 +1,92 @@
+function pirates(input){
+let cities=[];
+let line = input.shift();
+
+while (line!='Sail') {
+  
+  let [town, population , gold]= line.split('||'); 
+  let targetedCity = cities.find(city => city.town ===town)
+  if(targetedCity){
+    targetedCity.population+=Number(population);
+    targetedCity.gold+=Number(gold);
+  }
+  else{
+  cities.push({town,population:Number(population),gold:Number(gold)});
+  }
+  line = input.shift();
+}
+
+
+
+ line = input.shift();
+
+
+
+ while (line!='End') 
+ {
+  let arr = line.split('=>'); 
+  let command =arr.shift();
+ 
+    if(command=='Plunder'){
+    let [T , P , G] = arr;
+    let targetedCity = cities.find(city => city.town ===T)
+
+    if(targetedCity)
+    {
+      targetedCity.population-=Number(P);
+      targetedCity.gold-=Number(G);
+
+      console.log(`${T} plundered! ${G} gold stolen, ${P} citizens killed.`);
+
+      if(targetedCity.population==0 || targetedCity.gold==0){
+      console.log(`${T} has been wiped off the map!`);
+     cities= cities.filter(city=>city !==targetedCity  )
+      }
+    } 
+    }
+   else if(command=='Prosper'){
+    let[T,G] = arr;
+    if(G<0) {
+      console.log("Gold added cannot be a negative number!")
+      
+    }
+    else{
+    let targetedCity = cities.find(city => city.town ===T)
+
+    if(targetedCity){
+      targetedCity.gold+=Number(G);
+      console.log(`${G} gold added to the city treasury. ${T} now has ${targetedCity.gold} gold.`)
+    }
+  }
+   }
+    line = input.shift();
+
+  }
+console.log(`Ahoy, Captain! There are ${cities.length} wealthy settlements to go to:`)
+for(let el of cities){
+  console.log(`${el.town} -> Population: ${el.population} citizens, Gold: ${el.gold} kg`)
+}
+
+}
+
+pirates((["Nassau||95000||1000",
+
+"San Juan||930000||1250",
+
+"Campeche||270000||690",
+
+"Port Royal||320000||1000",
+
+"Port Royal||100000||2000",
+
+"Sail",
+
+"Prosper=>Port Royal=>-200",
+
+"Plunder=>Nassau=>94000=>750",
+
+"Plunder=>Nassau=>1000=>150",
+
+"Plunder=>Campeche=>150000=>690",
+
+"End"]))
