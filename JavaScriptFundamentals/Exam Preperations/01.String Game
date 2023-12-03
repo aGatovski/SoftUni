@@ -1,0 +1,46 @@
+function StringGame(input){
+let myString = input.shift();
+let line = input.shift().split(' ');
+
+while(line!='Done'){
+let command= line.shift();
+
+if(command=='Change'){
+  let char = line.shift();
+  let changeChar = line.shift();
+    while(myString.includes(char)){
+    myString=myString.replace(char,changeChar);
+    } 
+  console.log(myString)
+  }
+
+else if(command=='Includes'){
+  if(myString.includes(line.shift()))console.log('True');
+  else console.log('False');
+}
+
+else if(command=='End'){
+  if(myString.endsWith(line.shift()))console.log('True');
+  else console.log('False');
+}
+
+else if(command=='Uppercase'){
+  myString=myString.toUpperCase();
+  console.log(myString)
+}
+
+else if(command=='FindIndex'){
+  console.log(myString.indexOf(line.shift()))
+}
+
+else if(command=='Cut'){
+  let strIdx=Number(line.shift());
+  let endIdx=strIdx + Number(line.shift());
+  myString=myString.substring(strIdx,endIdx);
+  console.log(myString)
+}
+
+line = input.shift().split(' ');
+}
+}
+StringGame((["//Th1s 1s my str1ng!//", "Change 1 i", "Includes string", "End my", "Uppercase", "FindIndex I", "Cut 5 5", "Done"]))
