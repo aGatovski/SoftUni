@@ -1,0 +1,12 @@
+function EasterEgs(input){
+
+  let pattern = /(@|\#)(?<eggcolor>[a-z]{3,})(@|\#)\W+(?<amount>\d+)/g
+  let text = input.shift();
+  let matches = text.matchAll(pattern);
+  for(let match of matches){
+    let {eggcolor,amount} = match.groups;
+    console.log("You found " +amount +" " +   eggcolor + " eggs!")
+  }
+ 
+
+}
