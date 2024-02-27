@@ -1,0 +1,15 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open index.html",
+            "file": "c:\\Users\\t1t2t\\AppData\\Local\\Temp\\20358879-48b9-4923-8268-0eda895ade91_04.JS-Advanced-DOM-Introduction-Exercise-Resources.zip.e91\\04. JS-Advanced-DOM-Introduction-Exercise-Resources-New\\01. Subtraction\\index.html"
+        }
+    ]
+}
